@@ -1,0 +1,43 @@
+﻿<Window x:Class="Labb3Mehri.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:local="clr-namespace:Labb3Mehri" 
+        xmlns:views="clr-namespace:Labb3Mehri.Views" xmlns:converters="clr-namespace:Labb3Mehri.Converters"
+        mc:Ignorable="d"
+        Title="Quiz Configurator" Height="450" Width="800" WindowState="{Binding IsInFullscreen, Converter={StaticResource fullscreenConverter}, Mode=TwoWay}">
+
+    
+   
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="O" Command="{Binding ConfigurationViewModel.ShowPackOptionsCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="P" Command="{Binding ShowPlayerViewCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="E" Command="{Binding ShowConfigurationViewCommand}"/>
+        <KeyBinding Key="Insert" Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
+        <KeyBinding Key="Delete" Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="F4" Command="{Binding CloseAppCommand}"/>
+        <KeyBinding Modifiers="Alt" Key="Return" Command="{Binding FullscreenCommand}"/>
+        <!--key binding för att lägga till och ta bort frågor-->
+    </Window.InputBindings>
+    <Grid>
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        
+        <views:MenuView Grid.Row="0"  />
+
+        <views:PlayerView Grid.Row="1" Visibility="{Binding PlayerViewVisibility}" />
+        <views:ConfigurationView Grid.Row="1" Visibility="{Binding ConfigurationViewVisibility}"/>
+        <views:Result Grid.Row="1" Visibility="{Binding PlayerViewModel.ResultVisibility}"/>
+
+
+
+
+    </Grid>
+</Window>

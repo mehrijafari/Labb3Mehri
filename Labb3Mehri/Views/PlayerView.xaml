@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Labb3Mehri.Views.PlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Labb3Mehri.Views"
+             DataContext="{Binding PlayerViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1">
+            <TextBlock x:Name="Question"
+               Text="{Binding CurrentQuestion.Query}"
+               HorizontalAlignment="Center"
+               FontWeight="DemiBold"
+               FontSize="20"
+               TextWrapping="WrapWithOverflow"
+                   TextAlignment="Center"
+               Grid.Column="1"
+               />
+
+            <Label x:Name="questionCounter"
+               Content="{Binding ShowQuestionCount}"
+               HorizontalAlignment="Center"
+              />
+        </StackPanel>
+
+        <Button x:Name="firstAnswer"
+                Content="{Binding AnswerAlternatives[0]}"
+                Command="{Binding CheckAnswerCommand}"
+                Background="{Binding ButtonColors[0]}"
+                CommandParameter="{Binding AnswerAlternatives[0]}"
+                Grid.Column="1"
+                Grid.Row="2"
+                Width="200"
+                Height="75"
+                />
+        <Button x:Name="secondAnswer"
+                Content="{Binding AnswerAlternatives[1]}"
+                Command="{Binding CheckAnswerCommand}"
+                Background="{Binding ButtonColors[1]}"
+                CommandParameter="{Binding AnswerAlternatives[1]}"
+                Grid.Column="2"
+                Grid.Row="2"
+                Width="200"
+                Height="75"
+                />
+        <Button x:Name="thirdAnswer"
+                Content="{Binding AnswerAlternatives[2]}"
+                Command="{Binding CheckAnswerCommand}"
+                Background="{Binding ButtonColors[2]}"
+                CommandParameter="{Binding AnswerAlternatives[2]}"
+                Grid.Column="1"
+                Grid.Row="3"
+                Width="200"
+                Height="75"
+                />
+        <Button x:Name="fourthAnswer"
+                Content="{Binding AnswerAlternatives[3]}"
+                Command="{Binding CheckAnswerCommand}"
+                Background="{Binding ButtonColors[3]}"
+                CommandParameter="{Binding AnswerAlternatives[3]}"
+                Grid.Column="2"
+                Grid.Row="3"
+                Width="200"
+                Height="75"
+                />
+
+        <Label Grid.Column="3"
+               Content="{Binding Tick}"
+               FontWeight="Bold"
+               FontSize="30"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

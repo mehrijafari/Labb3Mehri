@@ -1,0 +1,10 @@
+﻿<Application x:Class="Labb3Mehri.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Labb3Mehri"
+             xmlns:views="clr-namespace:Labb3Mehri.Views" xmlns:converters="clr-namespace:Labb3Mehri.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <converters:FullscreenConverter x:Key="fullscreenConverter" />
+    </Application.Resources>
+</Application>
