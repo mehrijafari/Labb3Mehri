@@ -15,7 +15,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
 
@@ -37,22 +37,25 @@
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
             <Button Height="20"
                     Width="20"
-                    HorizontalAlignment="Left"
+                    Margin="0 0 5 0"
+                    Content="{fa:Icon list}"
+                    Command="{Binding OpenCategoryWindowCommand}"
+                    />
+            <Button Height="20"
+                    Width="20"
                     Content="{fa:Icon Sliders}"
                     Command="{Binding ShowPackOptionsCommand}"
                     Margin="0 0 5 0"/>
             <Button Height="20"
                     Width="20"
-                    HorizontalAlignment="Center"
                     Content="{fa:Icon Plus}"
                     Command="{Binding AddQuestionCommand}"
+                    Margin="0 0 5 0"
                     />
             <Button Height="20"
                     Width="20"
-                    HorizontalAlignment="Right"
                     Content="{fa:Icon Minus}"
-                    Command="{Binding RemoveQuestionCommand}"
-                    Margin="5 0 0 0"/>
+                    Command="{Binding RemoveQuestionCommand}"/>
         </StackPanel>
 
         <ListBox x:Name="listbox"

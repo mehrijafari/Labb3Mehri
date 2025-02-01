@@ -1,6 +1,7 @@
 ﻿using Labb3Mehri.Command;
 using Labb3Mehri.Dialogs;
 using Labb3Mehri.Model;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,10 +15,13 @@ namespace Labb3Mehri.ViewModel
     internal class ConfigurationViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
+        public ObservableCollection<Category> Categories { get => mainWindowViewModel.Categories; }
         public QuestionPackViewModel? ActivePack { get => mainWindowViewModel.ActivePack;}
         public DelegateCommand AddQuestionCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
         public DelegateCommand ShowPackOptionsCommand { get; }
+        public CategoryWindow CategoryWindow { get; set; }
+        public DelegateCommand OpenCategoryWindowCommand { get;}
 
         private Question? _activeQuestion;
 
@@ -32,6 +36,7 @@ namespace Labb3Mehri.ViewModel
                 RemoveQuestionCommand?.RaiseCanExecuteChanged();
             }
         }
+
 
         public bool isEnabled
         {
@@ -50,7 +55,6 @@ namespace Labb3Mehri.ViewModel
         }
 
 
-
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel) 
         {
             this.mainWindowViewModel = mainWindowViewModel;
@@ -60,12 +64,18 @@ namespace Labb3Mehri.ViewModel
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, IsRemovebuttonEnabled);
 
             ShowPackOptionsCommand = new DelegateCommand(ShowPackOptions);
+            OpenCategoryWindowCommand = new DelegateCommand(openCategoryWindow);
 
             ActiveQuestion = ActivePack?.Questions.FirstOrDefault();
+           
 
         }
 
-       
+        private void openCategoryWindow(object obj)
+        {
+            CategoryWindow = new CategoryWindow();
+            CategoryWindow.ShowDialog();
+        }
 
         private void ShowPackOptions(object obj)
         {
@@ -90,13 +100,12 @@ namespace Labb3Mehri.ViewModel
 
         private void AddQuestion(object obj)
         {
-
             ActivePack.Questions.Add(new Question("New Question", string.Empty, string.Empty, string.Empty, string.Empty));
             ActiveQuestion = ActivePack.Questions.LastOrDefault();
             AddQuestionCommand.RaiseCanExecuteChanged();
             mainWindowViewModel.ShowPlayerViewCommand.RaiseCanExecuteChanged();
 
         }
-        
+
     }
 }

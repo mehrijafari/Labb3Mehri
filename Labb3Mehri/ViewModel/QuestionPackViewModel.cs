@@ -1,4 +1,6 @@
 ﻿using Labb3Mehri.Model;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.ObjectModel;
 
 namespace Labb3Mehri.ViewModel
@@ -7,11 +9,30 @@ namespace Labb3Mehri.ViewModel
     {
         private readonly QuestionPack model;
 
-        public QuestionPackViewModel(QuestionPack model)
+
+        public ObjectId? CategoryId
         {
-            this.model = model;
-            this.Questions = new ObservableCollection<Question>(model.Questions);
+            get => model.CategoryId;
+            set
+            {
+                model.CategoryId = value;
+                RaisePropertyChanged();
+            }
         }
+
+        public Category Category
+        {
+            get => model.Category;
+            set
+            {
+                model.Category = value;
+                model.CategoryId = value?.Id;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObjectId ID => model.Id;
+        
         public string Name
         { 
             get => model.Name;
@@ -41,5 +62,10 @@ namespace Labb3Mehri.ViewModel
         }
         public ObservableCollection<Question> Questions { get; }
         public object Model { get; internal set; }
+        public QuestionPackViewModel(QuestionPack model) //konstruktor
+        {
+            this.model = model;
+            this.Questions = new ObservableCollection<Question>(model.Questions);
+        }
     }
 }

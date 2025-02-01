@@ -1,0 +1,34 @@
+﻿<Window x:Class="Labb3Mehri.Dialogs.AddNewCategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb3Mehri.Dialogs"
+        xmlns:UI="clr-namespace:Labb3Mehri.ViewModel"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=UI:MainWindowViewModel,IsDesignTimeCreatable=True}"
+        Title="AddNewCategoryWindow" Height="250" Width="250" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid>
+        <StackPanel>
+            <StackPanel HorizontalAlignment="Center"
+                        Margin="0 50 0 0">
+                <Label Content="Name of category:"
+                       FontWeight="Bold"/>
+                <TextBox Width="150"
+                         Text="{Binding NewCategory.Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="80"
+                        Height="20"
+                        Margin="33 10 0 0"
+                        Content="Cancel"
+                        Command="{Binding CloseAddNewCategoryCommand}"/>
+                <Button Width="80"
+                        Height="20"
+                        Margin="10 10 0 0"
+                        Content="Add category"
+                        Command="{Binding AddCategoryCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
